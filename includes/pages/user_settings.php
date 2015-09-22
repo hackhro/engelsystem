@@ -57,6 +57,7 @@ function user_settings() {
       $ok = false;
     }
     
+    /*
     if (isset($_REQUEST['planned_arrival_date']) && DateTime::createFromFormat("Y-m-d", trim($_REQUEST['planned_arrival_date']))) {
       $planned_arrival_date = DateTime::createFromFormat("Y-m-d", trim($_REQUEST['planned_arrival_date']))->getTimestamp();
     } else {
@@ -73,7 +74,7 @@ function user_settings() {
       }
     } else
       $planned_departure_date = null;
-      
+    */      
       // Trivia
     if (isset($_REQUEST['lastname']))
       $lastname = strip_request_item('lastname');
@@ -83,8 +84,8 @@ function user_settings() {
       $age = strip_request_item('age');
     if (isset($_REQUEST['tel']))
       $tel = strip_request_item('tel');
-    if (isset($_REQUEST['dect']))
-      $dect = strip_request_item('dect');
+	if (isset($_REQUEST['dect']))
+	  $dect = strip_request_item('dect');
     if (isset($_REQUEST['mobile']))
       $mobile = strip_request_item('mobile');
     if (isset($_REQUEST['hometown']))
@@ -98,7 +99,6 @@ function user_settings() {
           `Name`='" . sql_escape($lastname) . "',
           `Alter`='" . sql_escape($age) . "',
           `Telefon`='" . sql_escape($tel) . "',
-          `DECT`='" . sql_escape($dect) . "',
           `Handy`='" . sql_escape($mobile) . "',
           `email`='" . sql_escape($mail) . "',
           `email_shiftinfo`=" . sql_bool($email_shiftinfo) . ",
@@ -168,16 +168,16 @@ function user_settings() {
                   form_text('nick', _("Nick"), $nick, true),
                   form_text('lastname', _("Last name"), $lastname),
                   form_text('prename', _("First name"), $prename),
-                  form_date('planned_arrival_date', _("Planned date of arrival") . ' ' . entry_required(), $planned_arrival_date, time()),
-                  form_date('planned_departure_date', _("Planned date of departure"), $planned_departure_date, time()),
-                  form_text('age', _("Age"), $age),
+                  //form_date('planned_arrival_date', _("Planned date of arrival") . ' ' . entry_required(), $planned_arrival_date, time()),
+                  //form_date('planned_departure_date', _("Planned date of departure"), $planned_departure_date, time()),
+                  //form_text('age', _("Age"), $age),
                   form_text('tel', _("Phone"), $tel),
-                  form_text('dect', _("DECT"), $dect),
+                  //form_text('dect', _("DECT"), $dect),
                   form_text('mobile', _("Mobile"), $mobile),
                   form_text('mail', _("E-Mail") . ' ' . entry_required(), $mail),
                   form_checkbox('email_shiftinfo', _("Please send me an email if my shifts change"), $email_shiftinfo),
                   form_text('jabber', _("Jabber"), $jabber),
-                  form_text('hometown', _("Hometown"), $hometown),
+                  //form_text('hometown', _("Hometown"), $hometown),
                   $enable_tshirt_size ? form_select('tshirt_size', _("Shirt size"), $tshirt_sizes, $tshirt_size) : '',
                   form_info('', _('Please visit the angeltypes page to manage your angeltypes.')),
                   form_submit('submit', _("Save")) 
@@ -195,12 +195,13 @@ function user_settings() {
                   form_info(_("Here you can choose your color settings:")),
                   form_select('theme', _("Color settings:"), $themes, $selected_theme),
                   form_submit('submit_theme', _("Save")) 
-              )),
+              ))
+              /**,
               form(array(
                   form_info(_("Here you can choose your language:")),
                   form_select('language', _("Language:"), $locales, $selected_language),
                   form_submit('submit_language', _("Save")) 
-              )) 
+              )) **/
           )) 
       )) 
   ));

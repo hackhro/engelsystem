@@ -1,16 +1,16 @@
 <?php
 $locales = array(
-    'de_DE.UTF-8' => "Deutsch",
-    'en_US.UTF-8' => "English" 
+    'de_DE.UTF-8' => "Deutsch"
 );
 
-$default_locale = 'en_US.UTF-8';
+$default_locale = 'de_DE.UTF-8';
 
 /**
  * Return currently active locale
  */
 function locale() {
-  return $_SESSION['locale'];
+  global $default_locale;
+  return $default_locale;
 }
 
 /**

@@ -22,7 +22,3 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
-.icon-icon_angel:before {
-	content: "\e600";
-}

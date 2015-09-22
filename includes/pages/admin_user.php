@@ -37,20 +37,20 @@ function admin_user() {
     $html .= "  <tr><td>lastLogIn</td><td>" . date("Y-m-d H:i", $user_source['lastLogIn']) . "</td></tr>\n";
     $html .= "  <tr><td>Name</td><td>" . "<input type=\"text\" size=\"40\" name=\"eName\" value=\"" . $user_source['Name'] . "\"></td></tr>\n";
     $html .= "  <tr><td>Vorname</td><td>" . "<input type=\"text\" size=\"40\" name=\"eVorname\" value=\"" . $user_source['Vorname'] . "\"></td></tr>\n";
-    $html .= "  <tr><td>Alter</td><td>" . "<input type=\"text\" size=\"5\" name=\"eAlter\" value=\"" . $user_source['Alter'] . "\"></td></tr>\n";
-    $html .= "  <tr><td>Telefon</td><td>" . "<input type=\"text\" size=\"40\" name=\"eTelefon\" value=\"" . $user_source['Telefon'] . "\"></td></tr>\n";
+    //$html .= "  <tr><td>Alter</td><td>" . "<input type=\"text\" size=\"5\" name=\"eAlter\" value=\"" . $user_source['Alter'] . "\"></td></tr>\n";
+    //$html .= "  <tr><td>Telefon</td><td>" . "<input type=\"text\" size=\"40\" name=\"eTelefon\" value=\"" . $user_source['Telefon'] . "\"></td></tr>\n";
     $html .= "  <tr><td>Handy</td><td>" . "<input type=\"text\" size=\"40\" name=\"eHandy\" value=\"" . $user_source['Handy'] . "\"></td></tr>\n";
-    $html .= "  <tr><td>DECT</td><td>" . "<input type=\"text\" size=\"4\" name=\"eDECT\" value=\"" . $user_source['DECT'] . "\"></td></tr>\n";
+    //$html .= "  <tr><td>DECT</td><td>" . "<input type=\"text\" size=\"4\" name=\"eDECT\" value=\"" . $user_source['DECT'] . "\"></td></tr>\n";
     $html .= "  <tr><td>email</td><td>" . "<input type=\"text\" size=\"40\" name=\"eemail\" value=\"" . $user_source['email'] . "\"></td></tr>\n";
     $html .= "<tr><td>" . form_checkbox('email_shiftinfo', _("Please send me an email if my shifts change"), $user_source['email_shiftinfo']) . "</td></tr>\n";
     $html .= "  <tr><td>jabber</td><td>" . "<input type=\"text\" size=\"40\" name=\"ejabber\" value=\"" . $user_source['jabber'] . "\"></td></tr>\n";
-    $html .= "  <tr><td>Size</td><td>" . html_select_key('size', 'eSize', $tshirt_sizes, $user_source['Size']) . "</td></tr>\n";
+    //$html .= "  <tr><td>Size</td><td>" . html_select_key('size', 'eSize', $tshirt_sizes, $user_source['Size']) . "</td></tr>\n";
     
     $options = array(
         '1' => "Yes",
         '0' => "No" 
     );
-    
+/*    
     // Gekommen?
     $html .= "  <tr><td>Gekommen</td><td>\n";
     $html .= html_options('eGekommen', $options, $user_source['Gekommen']) . "</td></tr>\n";
@@ -58,13 +58,14 @@ function admin_user() {
     // Aktiv?
     $html .= "  <tr><td>Aktiv</td><td>\n";
     $html .= html_options('eAktiv', $options, $user_source['Aktiv']) . "</td></tr>\n";
-    
+*/
     // Aktiv erzwingen
+/*
     if (in_array('admin_active', $privileges)) {
       $html .= "  <tr><td>" . _("Force active") . "</td><td>\n";
       $html .= html_options('force_active', $options, $user_source['force_active']) . "</td></tr>\n";
     }
-    
+*/    
     // T-Shirt bekommen?
     $html .= "  <tr><td>T-Shirt</td><td>\n";
     $html .= html_options('eTshirt', $options, $user_source['Tshirt']) . "</td></tr>\n";
@@ -74,6 +75,7 @@ function admin_user() {
     $html .= "</table>\n</td><td valign=\"top\"></td></tr>";
     
     $html .= "</td></tr>\n";
+
     $html .= "</table>\n<br />\n";
     $html .= "<input type=\"submit\" value=\"Speichern\">\n";
     $html .= "</form>";
