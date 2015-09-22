@@ -32,7 +32,7 @@ function guest_register() {
   $tshirt_size = '';
   $password_hash = "";
   $selected_angel_types = array();
-  $planned_arrival_date = null;
+  $planned_arrival_date = date("Y-m-d");
   
   $angel_types_source = sql_select("SELECT * FROM `AngelTypes` ORDER BY `name`");
   $angel_types = array();
@@ -97,8 +97,8 @@ function guest_register() {
       $msg .= error(sprintf(_("Your password is too short (please use at least %s characters)."), MIN_PASSWORD_LENGTH), true);
     }
     
-    if (isset($_REQUEST['planned_arrival_date']) && DateTime::createFromFormat("Y-m-d", trim($_REQUEST['planned_arrival_date']))) {
-      $planned_arrival_date = DateTime::createFromFormat("Y-m-d", trim($_REQUEST['planned_arrival_date']))->getTimestamp();
+    if (DateTime::createFromFormat("Y-m-d", trim(date("Y-m-d")))) {
+      $planned_arrival_date = DateTime::createFromFormat("Y-m-d", trim(date("Y-m-d")))->getTimestamp();
     } else {
       $ok = false;
       $msg .= error(_("Please enter your planned date of arrival."), true);
@@ -118,8 +118,8 @@ function guest_register() {
       $age = strip_request_item('age');
     if (isset($_REQUEST['tel']))
       $tel = strip_request_item('tel');
-    if (isset($_REQUEST['dect']))
-      $dect = strip_request_item('dect');
+	if (isset($_REQUEST['dect']))
+	  $dect = strip_request_item('dect');
     if (isset($_REQUEST['mobile']))
       $mobile = strip_request_item('mobile');
     if (isset($_REQUEST['hometown']))
@@ -138,6 +138,7 @@ function guest_register() {
           `Telefon`='" . sql_escape($tel) . "', 
           `DECT`='" . sql_escape($dect) . "', 
           `Handy`='" . sql_escape($mobile) . "', 
+		  `Gekommen`= 1,
           `email`='" . sql_escape($mail) . "', 
           `email_shiftinfo`=" . sql_bool($email_shiftinfo) . ", 
           `jabber`='" . sql_escape($jabber) . "',
@@ -185,9 +186,9 @@ function guest_register() {
                       )) 
                   )),
                   div('row', array(
-                      div('col-sm-6', array(
-                          form_date('planned_arrival_date', _("Planned date of arrival") . ' ' . entry_required(), $planned_arrival_date, time()) 
-                      )),
+					  //div('col-sm-6', array(
+						  //form_date('planned_arrival_date', _("Planned date of arrival") . ' ' . entry_required() , $planned_arrival_date, time()) 
+					  //)),
                       div('col-sm-6', array(
                           $enable_tshirt_size ? form_select('tshirt_size', _("Shirt size") . ' ' . entry_required(), $tshirt_sizes, $tshirt_size) : '' 
                       )) 
@@ -205,15 +206,15 @@ function guest_register() {
               )),
               div('col-md-6', array(
                   div('row', array(
-                      div('col-sm-4', array(
-                          form_text('dect', _("DECT"), $dect) 
-                      )),
-                      div('col-sm-4', array(
+                      //div('col-sm-4', array(
+                          //form_text('dect', _("DECT"), $dect) 
+                      //)),
+                      div('col-sm-12', array(
                           form_text('mobile', _("Mobile"), $mobile) 
                       )),
-                      div('col-sm-4', array(
-                          form_text('tel', _("Phone"), $tel) 
-                      )) 
+                      //div('col-sm-4', array(
+                          //form_text('tel', _("Phone"), $tel) 
+                      //)) 
                   )),
                   form_text('jabber', _("Jabber"), $jabber),
                   div('row', array(
@@ -222,14 +223,6 @@ function guest_register() {
                       )),
                       div('col-sm-6', array(
                           form_text('lastname', _("Last name"), $lastname) 
-                      )) 
-                  )),
-                  div('row', array(
-                      div('col-sm-3', array(
-                          form_text('age', _("Age"), $age) 
-                      )),
-                      div('col-sm-9', array(
-                          form_text('hometown', _("Hometown"), $hometown) 
                       )) 
                   )),
                   form_info(entry_required() . ' = ' . _("Entry required!")) 
@@ -287,7 +280,7 @@ function guest_login() {
       $_SESSION['uid'] = $login_user['UID'];
       $_SESSION['locale'] = $login_user['Sprache'];
       
-      redirect(page_link_to('news'));
+      redirect(page_link_to('user_shifts'));
     }
   }
   
