@@ -15,6 +15,7 @@ function admin_shifts() {
   $angelmode = 'manually';
   $length = '';
   $change_hours = array();
+  $static_hours = array();
   $title = "";
   $shifttype_id = null;
   
@@ -87,6 +88,58 @@ function admin_shifts() {
     if (isset($_REQUEST['mode'])) {
       if ($_REQUEST['mode'] == 'single') {
         $mode = 'single';
+      } elseif ($_REQUEST['mode'] == 'static') {
+        if (isset($_REQUEST['static_hours'])) {
+          $mode = 'static';
+          $matcher = "/^(\\d{1,2})(?:(?::)(\\d{2}))?$/";
+          $formatNotice = "Use a format like 7, 07, 7:13, 07:13.";
+          $hours = array_map("trim", explode(",", trim($_REQUEST['static_hours'])));
+          foreach($hours as $hour) {
+            $hour_parts = array_map("trim", explode("-", $hour));
+
+            if(count($hour_parts) !== 2) {
+              $ok = false;
+              error(_('Please enter a static time with a hyphen like 07:00-18:00'));
+              break;
+            }
+
+            list($time_start, $time_stop) = $hour_parts;
+
+            if(!preg_match($matcher, $time_start, $matches)) {
+              $ok = false;
+              error(_('A start time is invalid. ' . $formatNotice));
+              break;
+            } else {
+              $time_start_hour = intval($matches[1]);
+              $time_start_minute = intval(isset($matches[2]) ? $matches[2] : 0);
+            }
+
+            if(!preg_match($matcher, $time_stop, $matches)) {
+              $ok = false;
+              error(_('An end time is invalid. ' . $formatNotice));
+              break;
+            } else {
+              $time_stop_hour = intval($matches[1]);
+              $time_stop_minute = intval(isset($matches[2]) ? $matches[2] : 0);
+            }
+
+            if(
+                ($time_start_hour < 0 || $time_start_hour > 23) ||
+                ($time_stop_hour < 0 || $time_stop_hour > 23) ||
+                ($time_start_minute < 0 || $time_start_minute > 59) ||
+                ($time_stop_minute < 0 || $time_stop_minute > 59)
+            ) {
+              $ok = false;
+              error(_('An hour is less than 0 or greater than 23 or a minute is less than 0 or greater than 59'));
+              break;
+            }
+
+            $static_hours[] = array(
+                "start" => array("hour" => $time_start_hour, "minute" => $time_start_minute),
+                "stop" => array("hour" => $time_stop_hour, "minute" => $time_stop_minute)
+            );
+          }
+        }
       } elseif ($_REQUEST['mode'] == 'multi') {
         if (isset($_REQUEST['length']) && preg_match("/^[0-9]+$/", trim($_REQUEST['length']))) {
           $mode = 'multi';
@@ -154,8 +207,38 @@ function admin_shifts() {
             'end' => $end,
             'RID' => $rid,
             'title' => $title,
-            'shifttype_id' => $shifttype_id 
+            'shifttype_id' => $shifttype_id
         );
+      } elseif ($mode == 'static') {
+        $shift_start = $start;
+
+        do {
+          foreach($static_hours as $_shift) {
+            $_shift_start =
+                $shift_start +
+                ($_shift["start"]["hour"] * 60 * 60) +
+                ($_shift["start"]["minute"] * 60);
+
+            $_shift_end =
+                $shift_start +
+                ($_shift["stop"]["hour"] * 60 * 60) +
+                ($_shift["stop"]["minute"] * 60);
+
+            if ($_shift_start >= $_shift_end) {
+              $_shift_end += 24 * 60 * 60;
+            }
+
+            $shifts[] = array(
+                'start' => $_shift_start,
+                'end' => $_shift_end,
+                'RID' => $rid,
+                'title' => $title,
+                'shifttype_id' => $shifttype_id
+            );
+          }
+
+          $shift_start += 24 * 60 * 60;
+        } while($shift_start < $end);
       } elseif ($mode == 'multi') {
         $shift_start = $start;
         do {
@@ -311,6 +394,8 @@ function admin_shifts() {
           form_text('length', _("Length"), ! empty($_REQUEST['length']) ? $_REQUEST['length'] : '120'),
           form_radio('mode', _("Create multiple shifts with variable length"), $mode == 'variable', 'variable'),
           form_text('change_hours', _("Shift change hours"), ! empty($_REQUEST['change_hours']) ? $_REQUEST['change_hours'] : '00, 04, 08, 10, 12, 14, 16, 18, 20, 22'),
+          form_radio('mode', _("Create shifts with specific periods"), $mode == 'static', 'static'),
+          form_text('static_hours', _("Shift periods"), ! empty($_REQUEST['static_hours']) ? $_REQUEST['static_hours'] : '', false, "17:00-22:00, 05:00-07:00"),
           '</div>',
           '<div class="col-md-6">',
           form_info(_("Needed angels"), ''),
