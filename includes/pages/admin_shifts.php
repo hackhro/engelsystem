@@ -210,7 +210,7 @@ function admin_shifts() {
             'shifttype_id' => $shifttype_id
         );
       } elseif ($mode == 'static') {
-        $shift_start = $start;
+        $shift_start = DateTime::createFromFormat("Y-m-d H:i", date("Y-m-d", $start) . " 00:00")->getTimestamp();;
 
         do {
           foreach($static_hours as $_shift) {
