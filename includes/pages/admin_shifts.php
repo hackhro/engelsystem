@@ -344,10 +344,12 @@ function admin_shifts() {
   } elseif (isset($_REQUEST['submit'])) {
     if (! is_array($_SESSION['admin_shifts_shifts']) || ! is_array($_SESSION['admin_shifts_types']))
       redirect(page_link_to('admin_shifts'));
-    
+
+    $bulk_id = uniqid('shift_', true);
     foreach ($_SESSION['admin_shifts_shifts'] as $shift) {
       $shift['URL'] = null;
       $shift['PSID'] = null;
+      $shift['bulk_id'] = $bulk_id;
       $shift_id = Shift_create($shift);
       if ($shift_id === false)
         engelsystem_error('Unable to create shift.');

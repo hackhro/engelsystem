@@ -146,6 +146,7 @@ function Shift_create($shift) {
       `title`=" . sql_null($shift['title']) . ",
       `URL`=" . sql_null($shift['URL']) . ",
       `PSID`=" . sql_null($shift['PSID']) . ",
+      `bulk_id`=" . sql_null(isset($shift['bulk_id']) ? $shift['bulk_id'] : null) . ",
       `created_by_user_id`='" . sql_escape($user['UID']) . "',
       `created_at_timestamp`=" . time());
   if ($result === false)
