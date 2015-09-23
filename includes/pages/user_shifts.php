@@ -96,6 +96,7 @@ function user_shifts() {
     $rid = $shift['RID'];
     $start = $shift['start'];
     $end = $shift['end'];
+    $update_bulk = isset($_REQUEST["update_bulk"]) && $_REQUEST["update_bulk"];
 
     if (isset($_REQUEST['submit'])) {
       // Name/Bezeichnung der Schicht, darf leer sein
@@ -152,18 +153,48 @@ function user_shifts() {
         $shift['start'] = $start;
         $shift['end'] = $end;
 
-        $result = Shift_update($shift);
-        if ($result === false)
-          engelsystem_error('Unable to update shift.');
-        sql_query("DELETE FROM `NeededAngelTypes` WHERE `shift_id`='" . sql_escape($shift_id) . "'");
-        $needed_angel_types_info = array();
-        foreach ($needed_angel_types as $type_id => $count) {
-          sql_query("INSERT INTO `NeededAngelTypes` SET `shift_id`='" . sql_escape($shift_id) . "', `angel_type_id`='" . sql_escape($type_id) . "', `count`='" . sql_escape($count) . "'");
-          $needed_angel_types_info[] = $angel_types[$type_id]['name'] . ": " . $count;
-        }
+        $update = function($shift, $shift_id) use($angel_types, $needed_angel_types, $title, $start, $end) {
+          if($shift["SID"] != $shift_id) {
+            $other_shift = Shift($shift_id);
+            $shift["SID"] = $shift_id;
+            $shift['start'] = $other_shift['start'];
+            $shift['end'] = $other_shift['end'];
+            $shift['URL'] = $other_shift['URL'];
+            $shift['PSID'] = $other_shift['PSID'];
+          }
 
-        engelsystem_log("Updated shift '" . $name . "' from " . date("Y-m-d H:i", $start) . " to " . date("Y-m-d H:i", $end) . " with angel types " . join(", ", $needed_angel_types_info));
-        success(_("Shift updated."));
+          $result = Shift_update($shift);
+
+          if ($result === false) {
+            engelsystem_error('Unable to update shift.');
+          }
+
+          sql_query("DELETE FROM `NeededAngelTypes` WHERE `shift_id`='" . sql_escape($shift_id) . "'");
+          $needed_angel_types_info = array();
+          foreach ($needed_angel_types as $type_id => $count) {
+            sql_query("INSERT INTO `NeededAngelTypes` SET `shift_id`='" . sql_escape($shift_id) . "', `angel_type_id`='" . sql_escape($type_id) . "', `count`='" . sql_escape($count) . "'");
+            $needed_angel_types_info[] = $angel_types[$type_id]['name'] . ": " . $count;
+          }
+
+          engelsystem_log("Updated shift '" . $title . "' from " . date("Y-m-d H:i", $start) . " to " . date("Y-m-d H:i", $end) . " with angel types " . join(", ", $needed_angel_types_info));
+        };
+
+        if($update_bulk) {
+          $bulk_shift_ids = array_column(
+              sql_select(
+                  "SELECT `SID` FROM `Shifts` WHERE `Shifts`.`bulk_id` = '" . sql_escape($shift["bulk_id"]) . "'"
+              ), "SID"
+          ) + [$shift_id];
+
+          foreach($bulk_shift_ids as $id) {
+            $update($shift, $id);
+          }
+
+          success(_("Shifts updated."));
+        } else {
+          $update($shift, $shift_id);
+          success(_("Shift updated."));
+        }
 
         redirect(shift_link([
             'SID' => $shift_id
@@ -186,6 +217,7 @@ function user_shifts() {
             form_select('rid', _("Room:"), $room_array, $rid),
             form_text('start', _("Start:"), date("Y-m-d H:i", $start)),
             form_text('end', _("End:"), date("Y-m-d H:i", $end)),
+            form_checkbox('update_bulk', _("Update all shifts created along with this one (except start and end)"), false),
             '<h2>' . _("Needed angels") . '</h2>',
             $angel_types,
             form_submit('submit', _("Save"))
