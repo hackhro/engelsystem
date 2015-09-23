@@ -263,9 +263,10 @@ function form_submit($name, $label) {
 /**
  * Rendert ein Formular-Textfeld
  */
-function form_text($name, $label, $value, $disabled = false) {
+function form_text($name, $label, $value, $disabled = false, $placeholder = "") {
   $disabled = $disabled ? ' disabled="disabled"' : '';
-  return form_element($label, '<input class="form-control" id="form_' . $name . '" type="text" name="' . $name . '" value="' . htmlspecialchars($value) . '" ' . $disabled . '/>', 'form_' . $name);
+  $placeholder = $placeholder ? sprintf(' placeholder="%s"', $placeholder) : '';
+  return form_element($label, '<input class="form-control" id="form_' . $name . '" type="text" name="' . $name . '" value="' . htmlspecialchars($value) . '" ' . $disabled . $placeholder . '/>', 'form_' . $name);
 }
 
 /**
