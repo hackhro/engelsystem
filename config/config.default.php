@@ -1,5 +1,8 @@
 <?php
 
+// Set a title for this site
+$sitetitle = "Engelsystem";
+
 // Enable maintenance mode (showin a static page)
 $maintenance_mode = false;
 
