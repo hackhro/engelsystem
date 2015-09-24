@@ -1,10 +1,11 @@
 # Konrad Mohrfeldt <konrad.mohrfeldt@farbdev.org>, 2015.
+# phil, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: Engelsystem 2.0\n"
 "POT-Creation-Date: 2015-08-15 23:36+0100\n"
-"PO-Revision-Date: 2015-09-22 22:48+0200\n"
-"Last-Translator: Konrad Mohrfeldt <konrad.mohrfeldt@farbdev.org>\n"
+"PO-Revision-Date: 2015-09-24 07:31+0200\n"
+"Last-Translator: phil <>\n"
 "Language-Team: hack-hro\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -70,14 +71,14 @@ msgstr "Nichts gefunden."
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:72
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/User_view.php:196
 msgid "Angeltypes"
-msgstr "Teams"
+msgstr "Aufgaben"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/angeltypes_controller.php:46
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/guest_login.php:326
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:188
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:232
 msgid "Teams/Job description"
-msgstr "Team-/Aufgabenbeschreibung"
+msgstr "Aufgabenbeschreibung"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/angeltypes_controller.php:72
 #, php-format
@@ -150,7 +151,7 @@ msgstr "verlassen"
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:76
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:221
 msgid "join"
-msgstr "mitmachen"
+msgstr "übernehmen"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/shifts_controller.php:28
 msgid "Shift could not be found."
@@ -197,7 +198,7 @@ msgstr[1] "Es gibt %d nicht freigeschaltets Team!"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:19
 msgid "Angel types which need approvals:"
-msgstr "Teams die bestätigt werden müssen:"
+msgstr "Aufgaben die bestätigt werden müssen:"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:29
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:37
@@ -1193,7 +1194,7 @@ msgstr "Aktiv erzwingen"
 msgid ""
 "Please visit the angeltypes page or the users profile to manage users "
 "angeltypes."
-msgstr "Bitte benutze die Team-Seite um die Teams des Users zu verwalten."
+msgstr "Bitte benutze die Aufgabe-Seite um die Aufgaben des Users zu verwalten."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_user.php:216
 msgid "Edit user"
@@ -1292,7 +1293,7 @@ msgid ""
 "Restricted angel types need will be confirmed later by an archangel. You can "
 "change your selection in the options section."
 msgstr ""
-"Bestimmte Teams müssen später von einer Koordinator_in freigeschaltet "
+"Bestimmte Aufgaben müssen später von einer Koordinator_in freigeschaltet "
 "werden. Du kannst Deine Auswahl später in den Einstellungen ändern."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/guest_login.php:212
@@ -1570,8 +1571,7 @@ msgstr "Geplanter Abreisetag"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_settings.php:182
 msgid "Please visit the angeltypes page to manage your angeltypes."
-msgstr ""
-"Bitte benutze die Team-Seite um deine Teammitgliedschaften zu verwalten."
+msgstr "Bitte benutze die Aufgaben-Seite um deine Aufgaben zu verwalten."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_settings.php:188
 msgid "Here you can change your password."
@@ -1705,8 +1705,8 @@ msgid ""
 "The administration has not configured any angeltypes yet - or you are not "
 "subscribed to any angeltype."
 msgstr ""
-"Die Administratoren haben noch keine Teams konfiguriert - oder Du hast dich "
-"noch in keinen Teams eingetragen."
+"Die Administratoren haben noch keine Aufgaben konfiguriert - oder Du hast "
+"dich noch für keine Aufgaben eingetragen."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_shifts.php:618
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_shifts.php:755
@@ -1756,7 +1756,7 @@ msgid ""
 "settings!"
 msgstr ""
 "Die Schichten, die hier angezeigt werden, sind von Deinen Einstellungen "
-"(Teams/Aufgaben) abhängig!"
+"(Aufgaben) abhängig!"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_shifts.php:823
 msgid "Description of the jobs."
@@ -1807,7 +1807,7 @@ msgstr "Koordinator"
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:32
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:36
 msgid "Member"
-msgstr "Mitglied"
+msgstr "Eingetragen"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:45
 #, php-format
@@ -1915,8 +1915,7 @@ msgid ""
 "Here is the list of teams and their tasks. If you have questions, read the "
 "FAQ."
 msgstr ""
-"Hier ist die Liste der Teams und ihrer Aufgaben. Wenn Du Fragen hast, schaue "
-"im FAQ nach."
+"Hier ist die Liste der Aufgaben. Wenn Du Fragen hast, schaue im FAQ nach."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:226
 msgid ""
