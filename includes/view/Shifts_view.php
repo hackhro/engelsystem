@@ -102,7 +102,7 @@ function Shift_view($shift, $shifttype, $room, $shift_admin, $angeltypes_source,
           div('col-sm-3 col-xs-6', [
               '<h4>' . _('Location') . '</h4>',
               '<p class="lead" style="margin-bottom: 0">' . glyph('map-marker') . $room['Name'] . '</p>',
-              '<p class="lead">' . nl2br($room['address']) . '</p>'
+              '<p class="lead">' . map_link($room['address']) . '</p>'
           ]) 
       ]),
       div('row', [

@@ -347,6 +347,48 @@ function color_darken($color, $percentage) {
   return vsprintf("#%s%s%s", $newColor);
 }
 
+function map_link($address) {
+  if(!trim($address)) {
+    return "";
+  }
+
+  $renderedAddress = nl2br($address);
+
+  $response = @file_get_contents(
+      sprintf(
+          "http://nominatim.openstreetmap.org/search?%s",
+          http_build_query(array(
+              "q" => str_replace(["\r\n", "\n", "\r"], ", ", $address),
+              "format" => "jsonv2"
+          ))
+      )
+  );
+
+  if(!$response) {
+    return $renderedAddress;
+  }
+
+  $response = json_decode($response, true);
+
+  if(json_last_error() !== JSON_ERROR_NONE) {
+    return $renderedAddress;
+  }
+
+  if(!is_array($response) || count($response) === 0) {
+    return $renderedAddress;
+  }
+
+  $match = $response[0];
+
+  if(!isset($match['osm_id']) || !isset($match['osm_type'])) {
+    return $renderedAddress;
+  }
+
+  return vsprintf('<a href="http://www.openstreetmap.org/%s/%d">%s</a>', [
+      $match['osm_type'], $match['osm_id'], $renderedAddress
+  ]);
+}
+
 /**
  * Generiert HTML Code für eine "Seite" mit zentraler Überschrift
  * Fügt dazu die übergebenen Elemente zusammen.
