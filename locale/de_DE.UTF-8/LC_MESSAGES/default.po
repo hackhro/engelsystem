@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Engelsystem 2.0\n"
 "POT-Creation-Date: 2015-08-15 23:36+0100\n"
-"PO-Revision-Date: 2015-09-24 07:31+0200\n"
-"Last-Translator: phil <>\n"
+"PO-Revision-Date: 2015-09-24 22:19+0200\n"
+"Last-Translator: Konrad Mohrfeldt <konrad.mohrfeldt@farbdev.org>\n"
 "Language-Team: hack-hro\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -869,7 +869,7 @@ msgid ""
 "This import will create/update/delete rooms and shifts by given FRAB-export "
 "file. The needed file format is xcal."
 msgstr ""
-"Dieser Import erzeugt, ändert und löscht Räume und Schichten anhand einer "
+"Dieser Import erzeugt, ändert und löscht Orte und Schichten anhand einer "
 "FRAB-Export Datei. Das benötigte Format ist xcal."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_import.php:78
@@ -889,11 +889,11 @@ msgstr "Import-Datei nicht vorhanden."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_import.php:108
 msgid "Rooms to create"
-msgstr "Anzulegende Räume"
+msgstr "Anzulegende Orte"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_import.php:112
 msgid "Rooms to delete"
-msgstr "Zu löschende Räume"
+msgstr "Zu löschende Orte"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_import.php:116
 msgid "Shifts to create"
@@ -943,7 +943,7 @@ msgstr "Titel"
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_shifts.php:303
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_shifts.php:803
 msgid "Room"
-msgstr "Raum"
+msgstr "Ort"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_import.php:125
 msgid "Shifts to update"
@@ -1042,7 +1042,7 @@ msgstr "Antwort von"
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_rooms.php:4
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_shifts.php:816
 msgid "Rooms"
-msgstr "Räume"
+msgstr "Orte"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_rooms.php:83
 #, php-format
@@ -1051,7 +1051,7 @@ msgstr "Bitte gib die Anzahl der benötigten Helfer_innen vom Typ %s an."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_rooms.php:111
 msgid "Room saved."
-msgstr "Raum gespeichert."
+msgstr "Ort gespeichert."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_rooms.php:131
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_rooms.php:176
@@ -1069,12 +1069,12 @@ msgstr "Benötigte Helfer_innen:"
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_rooms.php:152
 #, php-format
 msgid "Room %s deleted."
-msgstr "Raum %s gelöscht."
+msgstr "Ort %s gelöscht."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_rooms.php:160
 #, php-format
 msgid "Do you want to delete room %s?"
-msgstr "Möchest Du den Raum %s wirklich löschen?"
+msgstr "Möchest Du den Ort %s wirklich löschen?"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_rooms.php:170
 msgid "add"
@@ -1166,7 +1166,7 @@ msgstr "Schichtwechsel-Stunden"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_shifts.php:317
 msgid "Take needed angels from room settings"
-msgstr "Übernehme benötigte Helfer_innen von den Raum-Einstellungen"
+msgstr "Übernehme benötigte Helfer_innen von den Einstellungen des Orts"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_shifts.php:318
 msgid "The following angels are needed"
@@ -1615,7 +1615,7 @@ msgstr "Eintrag nicht gefunden."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_shifts.php:110
 msgid "Please select a room."
-msgstr "Bitte einen Raum auswählen."
+msgstr "Bitte einen Ort auswählen."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_shifts.php:117
 msgid "Please select a shifttype."
@@ -1648,7 +1648,7 @@ msgstr "Diese Seite ist mit JavaScript viel komfortabler."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_shifts.php:186
 msgid "Room:"
-msgstr "Raum:"
+msgstr "Ort:"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_shifts.php:187
 msgid "Start:"
@@ -1690,7 +1690,7 @@ msgstr "Die Administratoren haben noch keine Schichten angelegt."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_shifts.php:344
 msgid "The administration has not configured any rooms yet."
-msgstr "Die Administratoren habe noch keine Räume eingerichtet."
+msgstr "Die Administratoren habe noch keine Orte eingerichtet."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_shifts.php:357
 msgid "occupied"

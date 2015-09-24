@@ -269,6 +269,11 @@ function form_text($name, $label, $value, $disabled = false, $placeholder = "") 
   return form_element($label, '<input class="form-control" id="form_' . $name . '" type="text" name="' . $name . '" value="' . htmlspecialchars($value) . '" ' . $disabled . $placeholder . '/>', 'form_' . $name);
 }
 
+function form_color($name, $label, $value, $disabled = false) {
+  $disabled = $disabled ? ' disabled="disabled"' : '';
+  return form_element($label, '<input class="form-control" id="form_' . $name . '" type="color" name="' . $name . '" value="' . htmlspecialchars($value) . '" ' . $disabled . '/>', 'form_' . $name);
+}
+
 /**
  * Rendert ein Formular-Emailfeld
  */
@@ -331,6 +336,15 @@ function form($elements, $action = "") {
  */
 function page($elements) {
   return join($elements);
+}
+
+function color_darken($color, $percentage) {
+  $percentage = 1 - $percentage / 100;
+  preg_match("/^#([\\da-f]{2})([\\da-f]{2})([\\da-f]{2})$/", $color, $colorValues);
+  $newColor = array_map(function($channel) use($percentage) {
+    return dechex(hexdec($channel) * $percentage);
+  }, array($colorValues[1], $colorValues[2], $colorValues[3]));
+  return vsprintf("#%s%s%s", $newColor);
 }
 
 /**

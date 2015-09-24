@@ -26,6 +26,8 @@ function admin_rooms() {
     $from_pentabarf = "";
     $public = 'Y';
     $number = "";
+    $address = "";
+    $color = "#E5F2DE";
     
     $angeltypes_source = sql_select("SELECT * FROM `AngelTypes` ORDER BY `name`");
     $angeltypes = array();
@@ -40,6 +42,8 @@ function admin_rooms() {
       if (count($room) > 0) {
         $id = $_REQUEST['id'];
         $name = $room[0]['Name'];
+        $address = $room[0]['address'];
+        $color = $room[0]['color'];
         $from_pentabarf = $room[0]['FromPentabarf'];
         $public = $room[0]['show'];
         $needed_angeltypes = sql_select("SELECT * FROM `NeededAngelTypes` WHERE `room_id`='" . sql_escape($id) . "'");
@@ -59,7 +63,7 @@ function admin_rooms() {
           $ok = false;
           $msg .= error(_("Please enter a name."), true);
         }
-        
+
         if (isset($_REQUEST['from_pentabarf']))
           $from_pentabarf = 'Y';
         else
@@ -74,7 +78,15 @@ function admin_rooms() {
           $number = strip_request_item('number');
         else
           $ok = false;
-        
+
+        if (isset($_REQUEST['address'])) {
+          $address = strip_request_item('address');
+        }
+
+        if (isset($_REQUEST['color'])) {
+          $color = strip_request_item('color');
+        }
+
         foreach ($angeltypes as $angeltype_id => $angeltype) {
           if (isset($_REQUEST['angeltype_count_' . $angeltype_id]) && preg_match("/^[0-9]{1,4}$/", $_REQUEST['angeltype_count_' . $angeltype_id]))
             $angeltypes_count[$angeltype_id] = $_REQUEST['angeltype_count_' . $angeltype_id];
@@ -86,13 +98,13 @@ function admin_rooms() {
         
         if ($ok) {
           if (isset($id)) {
-            sql_query("UPDATE `Room` SET `Name`='" . sql_escape($name) . "', `FromPentabarf`='" . sql_escape($from_pentabarf) . "', `show`='" . sql_escape($public) . "', `Number`='" . sql_escape($number) . "' WHERE `RID`='" . sql_escape($id) . "' LIMIT 1");
-            engelsystem_log("Room updated: " . $name . ", pentabarf import: " . $from_pentabarf . ", public: " . $public . ", number: " . $number);
+            sql_query("UPDATE `Room` SET `Name`='" . sql_escape($name) . "', `FromPentabarf`='" . sql_escape($from_pentabarf) . "', `show`='" . sql_escape($public) . "', `Number`='" . sql_escape($number) . "', `address`='" . sql_escape($address) . "', `color`='" . sql_escape($color) . "' WHERE `RID`='" . sql_escape($id) . "' LIMIT 1");
+            engelsystem_log("Room updated: " . $name . ", pentabarf import: " . $from_pentabarf . ", public: " . $public . ", number: " . $number . ", address: " . $address . ", color: " . $color);
           } else {
-            $id = Room_create($name, $from_pentabarf, $public, $number);
+            $id = Room_create($name, $from_pentabarf, $public, $number, $address);
             if ($id === false)
               engelsystem_error("Unable to create room.");
-            engelsystem_log("Room created: " . $name . ", pentabarf import: " . $from_pentabarf . ", public: " . $public . ", number: " . $number);
+            engelsystem_log("Room created: " . $name . ", pentabarf import: " . $from_pentabarf . ", public: " . $public . ", number: " . $number . ", address: " . $address . ", color: " . $color);
           }
           
           sql_query("DELETE FROM `NeededAngelTypes` WHERE `room_id`='" . sql_escape($id) . "'");
@@ -129,7 +141,9 @@ function admin_rooms() {
                       form_text('name', _("Name"), $name),
                       form_checkbox('from_pentabarf', _("Frab import"), $from_pentabarf),
                       form_checkbox('public', _("Public"), $public),
-                      form_text('number', _("Room number"), $number) 
+                      form_text('number', _("Room number"), $number),
+                      form_textarea('address', _('Address'), $address),
+                      form_color('color', _("Signal Color"), $color)
                   )),
                   div('col-md-6', array(
                       div('row', array(

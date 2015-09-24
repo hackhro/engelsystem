@@ -370,7 +370,7 @@ function view_user_shifts() {
     redirect('?');
   }
 
-  $rooms = sql_select("SELECT `RID` AS `id`, `Name` AS `name` FROM `Room` WHERE `show`='Y' ORDER BY `Name`");
+  $rooms = sql_select("SELECT `RID` AS `id`, `Name` AS `name`, `color` FROM `Room` WHERE `show`='Y' ORDER BY `Name`");
 
   if (count($rooms) == 0) {
     error(_("The administration has not configured any rooms yet."));
@@ -700,7 +700,16 @@ function view_user_shifts() {
                 $class = 'free';
               else
                 $class = 'occupied';
-              $shifts_table .= '<td rowspan="' . $blocks . '" class="' . $class . '">';
+
+              if($is_free) {
+                $color = $room["color"] ?: "#f0f0f0";
+              } else {
+                $color = "#f0f0f0";
+              }
+
+              $borderColor = color_darken($color, 15);
+
+              $shifts_table .= '<td rowspan="' . $blocks . '" class="' . $class . '" style="background-color: ' . $color . '; border-color: ' . $borderColor . ';">';
               $shifts_table .= $shifts_row;
               $shifts_table .= "</td>";
               for ($j = 0; $j < $blocks && $i + $j < $maxshow; $j ++) {

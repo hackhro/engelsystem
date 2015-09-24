@@ -28,13 +28,11 @@ function Shift_signup_button_render($shift, $angeltype, $user_angeltype = null, 
 
 function Shift_view($shift, $shifttype, $room, $shift_admin, $angeltypes_source, $user_shift_admin, $admin_rooms, $admin_shifttypes, $user_shifts, $signed_up) {
   $parsedown = new Parsedown();
-  
-  $angeltypes = [];
-  foreach ($angeltypes_source as $angeltype)
-    $angeltypes[$angeltype['id']] = $angeltype;
+  $angeltypes = array_column($angeltypes_source, null, 'id');
   
   $needed_angels = '';
   foreach ($shift['NeedAngels'] as $needed_angeltype) {
+    $angelType = $angeltypes[$needed_angeltype['TID']];
     $class = 'progress-bar-warning';
     if ($needed_angeltype['taken'] == 0)
       $class = 'progress-bar-danger';
@@ -44,7 +42,8 @@ function Shift_view($shift, $shifttype, $room, $shift_admin, $angeltypes_source,
     
     $needed_angels .= '<div class="pull-right">' . Shift_signup_button_render($shift, $angeltypes[$needed_angeltype['TID']]) . '</div>';
     
-    $needed_angels .= '<h3>' . AngelType_name_render($angeltypes[$needed_angeltype['TID']]) . '</h3>';
+    $needed_angels .= '<h3>' . AngelType_name_render($angelType) . '</h3>';
+    $needed_angels .= '<div>' . $parsedown->parse($angelType['description']) . '</div>';
     $needed_angels .= progress_bar(0, $needed_angeltype['count'], min($needed_angeltype['taken'], $needed_angeltype['count']), $class, $needed_angeltype['taken'] . ' / ' . $needed_angeltype['count']);
     
     $angels = [];
@@ -102,7 +101,8 @@ function Shift_view($shift, $shifttype, $room, $shift_admin, $angeltypes_source,
           ]),
           div('col-sm-3 col-xs-6', [
               '<h4>' . _('Location') . '</h4>',
-              '<p class="lead">' . glyph('map-marker') . $room['Name'] . '</p>' 
+              '<p class="lead" style="margin-bottom: 0">' . glyph('map-marker') . $room['Name'] . '</p>',
+              '<p class="lead">' . nl2br($room['address']) . '</p>'
           ]) 
       ]),
       div('row', [
@@ -112,7 +112,7 @@ function Shift_view($shift, $shifttype, $room, $shift_admin, $angeltypes_source,
           ]),
           div('col-sm-6', [
               '<h2>' . _('Description') . '</h2>',
-              $parsedown->parse($shifttype['description']) 
+              $parsedown->parse($shifttype['description'])
           ]) 
       ]),
       $shift_admin ? Shift_editor_info_render($shift) : '' 

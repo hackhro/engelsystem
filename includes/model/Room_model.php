@@ -17,14 +17,20 @@ function Room_delete($room_id) {
  *          Is this a frab imported room?
  * @param boolean $public
  *          Is the room visible for angels?
+ * @param int $number room number
+ * @param string $address room address
+ *
+ * @return int
  */
-function Room_create($name, $from_frab, $public) {
+function Room_create($name, $from_frab, $public, $number = 0, $address = null, $color = null) {
   $result = sql_query("
       INSERT INTO `Room` SET 
       `Name`='" . sql_escape($name) . "', 
       `FromPentabarf`='" . sql_escape($from_frab ? 'Y' : 'N') . "', 
-      `show`='" . sql_escape($public ? 'Y' : 'N') . "', 
-      `Number`=0");
+      `show`='" . sql_escape($public ? 'Y' : 'N') . "',
+      `address`='" . sql_escape($address) . "',
+      `color`='" . sql_escape($color) . "',
+      `Number`='" . sql_escape(intval($number)) . "'");
   if ($result === false)
     return false;
   return sql_id();
