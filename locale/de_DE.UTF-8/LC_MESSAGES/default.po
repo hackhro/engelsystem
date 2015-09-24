@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Engelsystem 2.0\n"
 "POT-Creation-Date: 2015-08-15 23:36+0100\n"
-"PO-Revision-Date: 2015-09-24 22:19+0200\n"
+"PO-Revision-Date: 2015-09-25 01:21+0200\n"
 "Last-Translator: Konrad Mohrfeldt <konrad.mohrfeldt@farbdev.org>\n"
 "Language-Team: hack-hro\n"
 "Language: de\n"
@@ -1514,7 +1514,7 @@ msgstr "News anlegen:"
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_questions.php:3
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/Questions_view.php:29
 msgid "Ask an archangel"
-msgstr "Frage eine_n Koordinator_in"
+msgstr "Frag das Orgabüro"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/user_questions.php:28
 msgid "Unable to save question."
