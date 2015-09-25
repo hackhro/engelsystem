@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Engelsystem 2.0\n"
 "POT-Creation-Date: 2015-08-15 23:36+0100\n"
-"PO-Revision-Date: 2015-09-25 01:21+0200\n"
+"PO-Revision-Date: 2015-09-25 01:28+0200\n"
 "Last-Translator: Konrad Mohrfeldt <konrad.mohrfeldt@farbdev.org>\n"
 "Language-Team: hack-hro\n"
 "Language: de\n"
@@ -83,13 +83,13 @@ msgstr "Aufgabenbeschreibung"
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/angeltypes_controller.php:72
 #, php-format
 msgid "Angeltype %s deleted."
-msgstr "Team %s gelöscht."
+msgstr "Aufgabe %s gelöscht."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/angeltypes_controller.php:77
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:44
 #, php-format
 msgid "Delete angeltype %s"
-msgstr "Lösche Team %s"
+msgstr "Lösche Aufgabe %s"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/angeltypes_controller.php:121
 msgid "Please check the name. Maybe it already exists."
@@ -193,8 +193,8 @@ msgstr "Schichttypen"
 #, php-format
 msgid "There is %d unconfirmed angeltype."
 msgid_plural "There are %d unconfirmed angeltypes."
-msgstr[0] "Es gibt %d nicht freigeschaltetes Team!"
-msgstr[1] "Es gibt %d nicht freigeschaltets Team!"
+msgstr[0] "Es gibt %d User, der_die für eine Aufgabe freigeschaltet werden muss."
+msgstr[1] "Es gibt %d User, die für eine Aufgabe freigeschaltet werden müssen."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:19
 msgid "Angel types which need approvals:"
@@ -210,16 +210,16 @@ msgstr "Aufgaben die bestätigt werden müssen:"
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:296
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:304
 msgid "Angeltype doesn't exist."
-msgstr "Team existiert nicht."
+msgstr "Aufgabe existiert nicht."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:42
 msgid "You are not allowed to delete all users for this angeltype."
-msgstr "Du darfst nicht alle User aus diesem Team entfernen."
+msgstr "Du darfst nicht alle User aus dieser Aufgabe entfernen."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:52
 #, php-format
 msgid "Denied all users for angeltype %s."
-msgstr "Alle User aus Team %s abgelehnt."
+msgstr "Alle User aus der Aufgabe %s abgelehnt."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:57
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/UserAngelTypes_view.php:14
@@ -234,16 +234,16 @@ msgstr "Alle User ablehnen"
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:236
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:251
 msgid "User angeltype doesn't exist."
-msgstr "Benutzer-Team existiert nicht."
+msgstr "Benutzer-Aufgabe existiert nicht."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:90
 msgid "You are not allowed to confirm all users for this angeltype."
-msgstr "Du darfst nicht alle User aus diesem Team freischalten."
+msgstr "Du darfst nicht alle User für diese Aufgabe freischalten."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:100
 #, php-format
 msgid "Confirmed all users for angeltype %s."
-msgstr "Alle User für das Team %s freigeschaltet."
+msgstr "Alle User für die Aufgabe %s freigeschaltet."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:105
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/UserAngelTypes_view.php:25
@@ -252,7 +252,7 @@ msgstr "Alle User bestätigen"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:138
 msgid "You are not allowed to confirm this users angeltype."
-msgstr "Du darfst diesen User nicht für dieses Team freischalten."
+msgstr "Du darfst diesen User nicht für diese Aufgabe freischalten."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:146
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:197
@@ -263,16 +263,16 @@ msgstr "User existiert nicht."
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:156
 #, php-format
 msgid "%s confirmed for angeltype %s."
-msgstr "%s für Team %s freigeschaltet."
+msgstr "%s für Aufgabe %s freigeschaltet."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:161
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/UserAngelTypes_view.php:36
 msgid "Confirm angeltype for user"
-msgstr "Eintragung des Users für dieses Team bestätigen"
+msgstr "Eintragung des Users für diese Aufgabe bestätigen"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:202
 msgid "You are not allowed to delete this users angeltype."
-msgstr "Du darfst diesen User nicht aus diesem Team entfernen."
+msgstr "Du darfst diesen User nicht von dieser Aufgabe entbinden."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:211
 #, php-format
@@ -282,7 +282,7 @@ msgstr "User %s von %s entfernt."
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:219
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/UserAngelTypes_view.php:47
 msgid "Remove angeltype"
-msgstr "Team löschen"
+msgstr "Aufgabe löschen"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:231
 msgid "You are not allowed to set coordinator rights."
@@ -326,7 +326,7 @@ msgstr "User %s zu %s hinzugefügt."
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:349
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/UserAngelTypes_view.php:62
 msgid "Add user to angeltype"
-msgstr "User zu Team hinzufügen"
+msgstr "User zu Aufgabe hinzufügen"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/controller/user_angeltypes_controller.php:358
 #, php-format
@@ -727,7 +727,7 @@ msgstr "Freie Helfer_innen"
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/ShiftTypes_view.php:34
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/UserAngelTypes_view.php:68
 msgid "Angeltype"
-msgstr "Team"
+msgstr "Aufgabe"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_free.php:77
 msgid "Only confirmed"
@@ -1194,7 +1194,8 @@ msgstr "Aktiv erzwingen"
 msgid ""
 "Please visit the angeltypes page or the users profile to manage users "
 "angeltypes."
-msgstr "Bitte benutze die Aufgabe-Seite um die Aufgaben des Users zu verwalten."
+msgstr ""
+"Bitte benutze die Aufgaben-Seite um die Aufgaben des Users zu verwalten."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/pages/admin_user.php:216
 msgid "Edit user"
@@ -1812,7 +1813,7 @@ msgstr "Eingetragen"
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:45
 #, php-format
 msgid "Do you want to delete angeltype %s?"
-msgstr "Möchtest Du das Team %s löschen?"
+msgstr "Möchtest Du die Aufgabe %s löschen?"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:47
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/ShiftTypes_view.php:14
@@ -1863,7 +1864,7 @@ msgstr "Bitte benutze Markdown für die Beschreibung."
 msgid ""
 "You are unconfirmed for this angeltype. Please go to the introduction for %s "
 "to get confirmed."
-msgstr "Du bist noch nicht für dieses Team bestätigt."
+msgstr "Du bist noch nicht für diese Aufgabe bestätigt."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:107
 msgid "confirm"
@@ -1900,7 +1901,7 @@ msgstr "Alle ablehnen"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:187
 msgid "New angeltype"
-msgstr "Neues Team"
+msgstr "Neue Aufgabe"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/AngelTypes_view.php:193
 msgid "Membership"
@@ -1922,7 +1923,7 @@ msgid ""
 "This angeltype is restricted by double-opt-in by a team coordinator. Please "
 "show up at the according introduction meetings."
 msgstr ""
-"Du musst für dieses Team von einer Koordinator_in freigeschaltet werden."
+"Du musst für diese Aufgabe von einer Koordinator_in freigeschaltet werden."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/Questions_view.php:17
 msgid "Open questions"
