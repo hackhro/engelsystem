@@ -574,3 +574,6 @@ ALTER TABLE Room
 
 ALTER TABLE Room
   ADD COLUMN `color` VARCHAR(7) DEFAULT NULL;
+
+ALTER TABLE `ShiftTypes`
+  ADD `restrict_visibility` TINYINT(1) NULL DEFAULT '0';

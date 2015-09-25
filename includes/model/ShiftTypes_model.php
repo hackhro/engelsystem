@@ -16,10 +16,11 @@ function ShiftType_delete($shifttype_id) {
  * @param int $angeltype_id          
  * @param string $description          
  */
-function ShiftType_update($shifttype_id, $name, $angeltype_id, $description) {
+function ShiftType_update($shifttype_id, $name, $angeltype_id, $description, $restrict_visibility = false) {
   return sql_query("UPDATE `ShiftTypes` SET
       `name`='" . sql_escape($name) . "', 
       `angeltype_id`=" . sql_null($angeltype_id) . ",
+      `restrict_visibility`=" . ($restrict_visibility ? 1 : 0) . ",
       `description`='" . sql_escape($description) . "'
       WHERE `id`='" . sql_escape($shifttype_id) . "'");
 }
@@ -32,10 +33,11 @@ function ShiftType_update($shifttype_id, $name, $angeltype_id, $description) {
  * @param string $description          
  * @return new shifttype id
  */
-function ShiftType_create($name, $angeltype_id, $description) {
+function ShiftType_create($name, $angeltype_id, $description, $restrict_visibility) {
   $result = sql_query("INSERT INTO `ShiftTypes` SET
       `name`='" . sql_escape($name) . "', 
       `angeltype_id`=" . sql_null($angeltype_id) . ",
+      `restrict_visibility`=" . ($restrict_visibility ? 1 : 0) . ",
       `description`='" . sql_escape($description) . "'");
   if ($result === false)
     return false;

@@ -40,6 +40,7 @@ function shifttype_edit_controller() {
   $name = "";
   $angeltype_id = null;
   $description = "";
+  $restrict_visibility = false;
   
   $angeltypes = AngelTypes();
   if ($angeltypes === false)
@@ -57,6 +58,7 @@ function shifttype_edit_controller() {
     $name = $shifttype['name'];
     $angeltype_id = $shifttype['angeltype_id'];
     $description = $shifttype['description'];
+    $restrict_visibility = !!$shifttype['restrict_visibility'];
   }
   
   if (isset($_REQUEST['submit'])) {
@@ -67,6 +69,10 @@ function shifttype_edit_controller() {
     else {
       $ok = false;
       error(_('Please enter a name.'));
+    }
+
+    if (isset($_REQUEST['restrict_visibility']) && $_REQUEST['restrict_visibility']) {
+      $restrict_visibility = true;
     }
     
     if (isset($_REQUEST['angeltype_id']) && preg_match("/^[0-9]+$/", $_REQUEST['angeltype_id']))
@@ -79,13 +85,13 @@ function shifttype_edit_controller() {
     
     if ($ok) {
       if ($shifttype_id) {
-        $result = ShiftType_update($shifttype_id, $name, $angeltype_id, $description);
+        $result = ShiftType_update($shifttype_id, $name, $angeltype_id, $description, $restrict_visibility);
         if ($result === false)
           engelsystem_error('Unable to update shifttype.');
         engelsystem_log('Updated shifttype ' . $name);
         success(_('Updated shifttype.'));
       } else {
-        $shifttype_id = ShiftType_create($name, $angeltype_id, $description);
+        $shifttype_id = ShiftType_create($name, $angeltype_id, $description, $restrict_visibility);
         if ($shifttype_id === false)
           engelsystem_error('Unable to create shifttype.');
         engelsystem_log('Created shifttype ' . $name);
@@ -97,7 +103,7 @@ function shifttype_edit_controller() {
   
   return [
       shifttypes_title(),
-      ShiftType_edit_view($name, $angeltype_id, $angeltypes, $description, $shifttype_id) 
+      ShiftType_edit_view($name, $angeltype_id, $angeltypes, $description, $shifttype_id, $restrict_visibility)
   ];
 }
 

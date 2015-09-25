@@ -358,6 +358,7 @@ function user_shifts() {
 function view_user_shifts() {
   global $user, $privileges;
   global $ical_shifts;
+  $user_angel_times = User_angeltypes($user);
 
   $ical_shifts = array();
   $days = sql_select_single_col("
@@ -575,6 +576,22 @@ function view_user_shifts() {
         foreach ($shifts as $shift) {
           if ($shift["RID"] == $rid) {
             if (floor($shift["start"] / (15 * 60)) == $thistime / (15 * 60)) {
+              $shift_type = ShiftType($shift['shifttype_id']);
+
+              if($shift_type['restrict_visibility']) {
+                $hasAssignment = false;
+
+                foreach($user_angel_times as $assignment) {
+                  if ($shift_type["angeltype_id"] == $assignment["id"]) {
+                    $hasAssignment = $assignment["restricted"] ? !!$assignment["confirm_user_id"] : true;
+                  }
+                }
+
+                if (!$hasAssignment) {
+                  continue;
+                }
+              }
+
               $blocks = ($shift["end"] - $shift["start"]) / (15 * 60);
               if ($blocks < 1)
                 $blocks = 1;
@@ -604,7 +621,7 @@ function view_user_shifts() {
               $shifts_row .= " &ndash; ";
               $shifts_row .= date('H:i', $shift['end']);
               $shifts_row .= "<br /><b>";
-              $shifts_row .= ShiftType($shift['shifttype_id'])['name'];
+              $shifts_row .= $shift_type['name'];
               $shifts_row .= "</b><br />";
               if ($shift['title'] != '') {
                 $shifts_row .= $shift['title'];

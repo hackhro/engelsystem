@@ -17,7 +17,7 @@ function ShiftType_delete_view($shifttype) {
   ));
 }
 
-function ShiftType_edit_view($name, $angeltype_id, $angeltypes, $description, $shifttype_id) {
+function ShiftType_edit_view($name, $angeltype_id, $angeltypes, $description, $shifttype_id, $restrict_visibility) {
   $angeltypes_select = [
       '' => _('All') 
   ];
@@ -32,6 +32,7 @@ function ShiftType_edit_view($name, $angeltype_id, $angeltypes, $description, $s
       form([
           form_text('name', _('Name'), $name),
           form_select('angeltype_id', _('Angeltype'), $angeltypes_select, $angeltype_id),
+          form_checkbox('restrict_visibility', _('Restrict visibility to people with this Task'), $restrict_visibility, 1),
           form_textarea('description', _('Description'), $description),
           form_info('', _('Please use markdown for the description.')),
           form_submit('submit', _('Save')) 
