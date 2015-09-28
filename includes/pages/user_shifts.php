@@ -578,7 +578,7 @@ function view_user_shifts() {
             if (floor($shift["start"] / (15 * 60)) == $thistime / (15 * 60)) {
               $shift_type = ShiftType($shift['shifttype_id']);
 
-              if($shift_type['restrict_visibility']) {
+              if($shift_type['restrict_visibility'] && !in_array('admin_shifts', $privileges)) {
                 $hasAssignment = false;
 
                 foreach($user_angel_times as $assignment) {
