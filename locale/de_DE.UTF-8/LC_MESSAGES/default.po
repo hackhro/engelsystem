@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Engelsystem 2.0\n"
 "POT-Creation-Date: 2015-08-15 23:36+0100\n"
-"PO-Revision-Date: 2015-09-25 01:28+0200\n"
+"PO-Revision-Date: 2015-09-28 16:21+0200\n"
 "Last-Translator: Konrad Mohrfeldt <konrad.mohrfeldt@farbdev.org>\n"
 "Language-Team: hack-hro\n"
 "Language: de\n"
@@ -422,7 +422,7 @@ msgstr "Hallo %s,"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/helper/email_helper.php:11
 msgid "here is a message for you from the engelsystem:"
-msgstr "hier ist eine Nachricht aus dem HROHilftBüro für Dich:"
+msgstr "hier ist eine Nachricht aus dem Orgabüro für Dich:"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/helper/email_helper.php:11
 msgid ""
@@ -430,8 +430,8 @@ msgid ""
 "because you are registered in the engelsystem."
 msgstr ""
 "Diese E-Mail wurde automatisch generiert und muss daher nicht unterschrieben "
-"werden. Du hast diese E-Mail bekommen, weil Du im HROHilftBüro registriert "
-"bist."
+"werden. Du hast diese E-Mail bekommen, weil Du im #hrohilft Schichtsystem "
+"registriert bist."
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/mailer/shifts_mailer.php:10
 msgid "A Shift you are registered on has changed:"
@@ -1949,7 +1949,7 @@ msgstr "Schichteintrag bearbeiten"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/ShiftEntry_view.php:25
 msgid "Angel:"
-msgstr "Engel:"
+msgstr "Helfer_in:"
 
 #: /Users/msquare/workspace/projects/engelsystem/includes/view/ShiftEntry_view.php:26
 msgid "Date, Duration:"
