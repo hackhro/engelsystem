@@ -196,10 +196,10 @@ function User_view($user_source, $admin_user_privilege, $admin_shifts_privilege,
               '<h4>' . _("Angeltypes") . '</h4>',
               User_angeltypes_render($user_angeltypes) 
           )),
-          div('col-md-3', array(
+          div('col-md-3', $admin_user_privilege || $its_me ? array(
               '<h4>' . _("Rights") . '</h4>',
-              User_groups_render($user_groups) 
-          )) 
+              User_groups_render($user_groups)
+          ) : null)
       )),
       div('row space-top', array(
           div('col-md-12', array(
