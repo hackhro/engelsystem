@@ -108,7 +108,7 @@ function User_shift_state_render($user) {
     return '<span class="text-danger moment-countdown" data-timestamp="' . $upcoming_shifts[0]['end'] . '">' . _("Shift ends %c") . '</span>';
 }
 
-function User_view($user_source, $admin_user_privilege, $freeloader, $user_angeltypes, $user_groups, $shifts, $its_me) {
+function User_view($user_source, $admin_user_privilege, $admin_shifts_privilege, $freeloader, $user_angeltypes, $user_groups, $shifts, $its_me) {
   global $LETZTES_AUSTRAGEN, $privileges;
   
   $user_name = htmlspecialchars($user_source['Vorname']) . " " . htmlspecialchars($user_source['Name']);
@@ -173,8 +173,8 @@ function User_view($user_source, $admin_user_privilege, $freeloader, $user_angel
         'comment' => "",
         'actions' => "" 
     );
-  
-  return page_with_title('<span class="icon-icon_angel"></span> ' . htmlspecialchars($user_source['Nick']) . ' <small>' . $user_name . '</small>', array(
+
+  return page_with_title('<span class="icon-icon_angel"></span> ' . htmlspecialchars($user_source['Nick']) . ($admin_shifts_privilege || $admin_user_privilege || $its_me ? ' <small>' .  $user_name . '</small>' : ''), array(
       msg(),
       div('row', array(
           div('col-md-3', array(
