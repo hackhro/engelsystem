@@ -77,6 +77,11 @@ function guest_register() {
         $msg .= error(_("Please check your jabber account information."), true);
       }
     }
+
+    if(!isset($_REQUEST['mobile']) || strlen(strip_request_item('mobile')) == 0) {
+      $ok = false;
+      $msg .= error(_("Please enter your mobile number"), true);
+    }
     
     if ($enable_tshirt_size) {
       if (isset($_REQUEST['tshirt_size']) && isset($tshirt_sizes[$_REQUEST['tshirt_size']]) && $_REQUEST['tshirt_size'] != '')
@@ -210,7 +215,7 @@ function guest_register() {
                           //form_text('dect', _("DECT"), $dect) 
                       //)),
                       div('col-sm-12', array(
-                          form_text('mobile', _("Mobile"), $mobile) 
+                          form_text('mobile', _("Mobile") . ' ' . entry_required(), $mobile)
                       )),
                       //div('col-sm-4', array(
                           //form_text('tel', _("Phone"), $tel) 

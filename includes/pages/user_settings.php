@@ -40,6 +40,11 @@ function user_settings() {
       $ok = false;
       $msg .= error(_("Please enter your e-mail."), true);
     }
+
+    if (!isset($_REQUEST['mobile']) || strlen(strip_request_item('mobile')) === 0) {
+      $ok = false;
+      $msg .= error(_("Please enter your mobile number"), true);
+    }
     
     $email_shiftinfo = isset($_REQUEST['email_shiftinfo']);
     
@@ -173,7 +178,7 @@ function user_settings() {
                   //form_text('age', _("Age"), $age),
                   form_text('tel', _("Phone"), $tel),
                   //form_text('dect', _("DECT"), $dect),
-                  form_text('mobile', _("Mobile"), $mobile),
+                  form_text('mobile', _("Mobile") . ' ' . entry_required(), $mobile),
                   form_text('mail', _("E-Mail") . ' ' . entry_required(), $mail),
                   form_checkbox('email_shiftinfo', _("Please send me an email if my shifts change"), $email_shiftinfo),
                   form_text('jabber', _("Jabber"), $jabber),
