@@ -210,35 +210,34 @@ function admin_shifts() {
             'shifttype_id' => $shifttype_id
         );
       } elseif ($mode == 'static') {
-        $shift_start = DateTime::createFromFormat("Y-m-d H:i", date("Y-m-d", $start) . " 00:00")->getTimestamp();;
+        $single_day = DateInterval::createFromDateString("1 day");
+        $date_start = DateTime::createFromFormat("Y-m-d H:i", trim($_REQUEST['start']));
+        $date_end = DateTime::createFromFormat("Y-m-d H:i", trim($_REQUEST['end']))->setTime(23, 59, 59);
+        /** @var \DateTime[] $period */
+        $period = new DatePeriod($date_start, $single_day, $date_end);
 
-        do {
+        foreach($period as $day) {
           foreach($static_hours as $_shift) {
-            $_shift_start =
-                $shift_start +
-                ($_shift["start"]["hour"] * 60 * 60) +
-                ($_shift["start"]["minute"] * 60);
+            $_shift_start = clone $day;
+            $_shift_start->setTime($_shift["start"]["hour"], $_shift["start"]["minute"]);
 
-            $_shift_end =
-                $shift_start +
-                ($_shift["stop"]["hour"] * 60 * 60) +
-                ($_shift["stop"]["minute"] * 60);
+            $_shift_end = clone $day;
+            $_shift_end->setTime($_shift["stop"]["hour"], $_shift["stop"]["minute"]);
 
-            if ($_shift_start >= $_shift_end) {
-              $_shift_end += 24 * 60 * 60;
+            // does the shift span two days?
+            if($_shift["stop"]["hour"] < $_shift["start"]["hour"]) {
+              $_shift_end->add($single_day);
             }
 
             $shifts[] = array(
-                'start' => $_shift_start,
-                'end' => $_shift_end,
+                'start' => $_shift_start->getTimestamp(),
+                'end' => $_shift_end->getTimestamp(),
                 'RID' => $rid,
                 'title' => $title,
                 'shifttype_id' => $shifttype_id
             );
           }
-
-          $shift_start += 24 * 60 * 60;
-        } while($shift_start < $end);
+        }
       } elseif ($mode == 'multi') {
         $shift_start = $start;
         do {
