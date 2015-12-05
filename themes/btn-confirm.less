@@ -1,0 +1,37 @@
+.btn-confirm {
+  position: relative;
+}
+
+.btn-confirm-toggle {
+  width: 1px;
+  height: 1px;
+  display: inline-block;
+  opacity: 0;
+  position: absolute;
+}
+
+.btn-confirm-dialog {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 10px;
+  background-color: white;
+  border: 0 none;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
+  padding: 10px 15px;
+  white-space: nowrap;
+  display: none;
+
+  .btn-confirm-toggle:checked ~ & {
+    display: block;
+  }
+
+  &:hover {
+    background-color: @brand-danger;
+    color: white;
+  }
+}
+
+#delete-shifts {
+  float: right;
+}
