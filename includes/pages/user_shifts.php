@@ -496,6 +496,17 @@ function view_user_shifts() {
 
   $shifts = sql_select($SQL);
 
+  if(isset($_REQUEST["action"]) && $_REQUEST["action"] === "delete") {
+    foreach($shifts as $shift) {
+      Shift_delete($shift["SID"]);
+    }
+
+    $parts = $_REQUEST;
+    $parts["action"] = "filter";
+    $url = "/?" . http_build_query($parts);
+    redirect($url);
+  }
+
   $ownshifts_source = sql_select("
       SELECT `ShiftTypes`.`name`, `Shifts`.*
       FROM `Shifts`
